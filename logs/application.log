@@ -1,0 +1,41 @@
+2016-05-27 16:10:19,657 - [INFO] - from play in pool-4-thread-2 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2016-05-27 16:10:44,729 - [INFO] - from application in play-internal-execution-context-1 
+ReactiveMongoPlugin starting...
+
+2016-05-27 16:10:44,748 - [INFO] - from application in play-internal-execution-context-1 
+ReactiveMongoPlugin successfully started with db 'modern-web-template'! Servers:
+		[localhost:27017]
+
+2016-05-27 16:10:44,757 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2016-05-27 16:10:45,316 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
+Starting application default Akka system.
+
+2016-05-27 16:39:54,795 - [INFO] - from play in play-internal-execution-context-6 
+Shutdown application default Akka system.
+
+2016-05-27 16:39:54,839 - [INFO] - from application in play-internal-execution-context-6 
+ReactiveMongoPlugin stops, closing connections...
+
+2016-05-27 16:39:54,842 - [INFO] - from application in ForkJoinPool-2-worker-1 
+ReactiveMongo Connections stopped. [Failure(akka.pattern.AskTimeoutException: Recipient[Actor[akka://application/user/$b#196095627]] had already been terminated.)]
+
+2016-05-27 16:39:55,126 - [INFO] - from application in play-internal-execution-context-6 
+ReactiveMongoPlugin starting...
+
+2016-05-27 16:39:55,127 - [INFO] - from application in play-internal-execution-context-6 
+ReactiveMongoPlugin successfully started with db 'modern-web-template'! Servers:
+		[localhost:27017]
+
+2016-05-27 16:39:55,127 - [INFO] - from play in play-internal-execution-context-6 
+Application started (Dev)
+
+2016-05-27 16:39:55,226 - [INFO] - from play in play-akka.actor.default-dispatcher-39 
+Starting application default Akka system.
+
+2016-05-27 16:39:55,259 - [ERROR] - from reactivemongo.core.actors.MongoDBSystem in application-akka.actor.default-dispatcher-3 
+The entire node set is unreachable, is there a network problem?
+
