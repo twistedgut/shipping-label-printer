@@ -1,24 +1,24 @@
 
 
 <div ng-controller="XmlCtrl as xc">
-    <div class="jumbotron">
-        <h2>Cunning stunts</h2>
-        <p class="pull-right">... in two dimensions</p>
-    </div>
+    <!--<div class="jumbotron">-->
+        <!--<h2>Cunning stunts</h2>-->
+        <!--<p class="pull-right">... in two dimensions</p>-->
+    <!--</div>-->
 
     <div>
         <div class="form-group">
             <h3>
-                XML Shipping Labels
+                Shipping Labels
+                <a ng-href="/#/label/json/create" class="btn btn-primary pull-right" id="btn_json_create">Add JSON Entry</a>
                 <a ng-href="/#/label/xml/create" class="btn btn-primary pull-right" id="btn_xml_create">Add XML Entry</a>
             </h3>
             <hr>
         </div>
         <div class="form-group">
-            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter XML entries...">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter entries...">
             <hr>
         </div>
-
 
         <table id="entry_list" class="table table-striped">
             <thead>
@@ -35,10 +35,33 @@
                 <td>
                     {{ entry.xmlType }}
                 </td>
-                <!--<td>-->
-                <!--WORK OUT HOW TO DELETE FROM HERE -> use CONTROLLER AND SIMPLY REDIRECT TO /??-->
-                    <!--<a ng-href="/label/xml/delete/{{entry.xmlName}}/{{entry.xmlType}}" class="btn btn-success pull-right" id="btn_xml_update">Edit XML</a>-->
-                <!--</td>-->
+                <td>
+                    <a ng-href="/#/label/xml/update/{{entry.xmlName}}/{{entry.xmlType}}" class="btn btn-success pull-right" id="btn_xml_update">Edit XML</a>
+                </td>
+            </tr>
+            <tr ng-hide="xc.entries.length">
+                <td colspan="3">
+                    <p class="text-center">No XML Entries Found</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table id="json_list" class="table table-striped">
+            <thead>
+            <tr>
+                <th>JSON entry name</th>
+                <th>JSON type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entry in xc.entries | filter:searchText">
+                <td>
+                    {{ entry.xmlName }}
+                </td>
+                <td>
+                    {{ entry.xmlType }}
+                </td>
                 <td>
                     <a ng-href="/#/label/xml/update/{{entry.xmlName}}/{{entry.xmlType}}" class="btn btn-success pull-right" id="btn_xml_update">Edit XML</a>
                 </td>

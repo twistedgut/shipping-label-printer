@@ -7,6 +7,7 @@ class CreateXmlCtrl
 
     createXmlEntry: () ->
         @$log.debug "createXmlEntry()"
+        @entry.is_active  = true
         @XmlService.createXmlEntry(@entry)
         .then(
             (data) =>

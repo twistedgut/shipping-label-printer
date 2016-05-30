@@ -27,9 +27,12 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/label/xml/update/:xmlName/:xmlType', {
                 templateUrl: '/assets/partials/update.html'
             })
-#            .when('/label/xml/delete/:xmlName/:xmlType', {
-#                templateUrl: '/assets/partials/update.html'
-#            })
+            .when('/label/json/create', {
+                templateUrl: '/assets/partials/createjson.html'
+            })
+            .when('/label/json/update/:jsonName/:jsonType', {
+                 templateUrl: '/assets/partials/updatejson.html'
+            })
             .otherwise({redirectTo: '/'})])
     .config(['$locationProvider', ($locationProvider) ->
         $locationProvider.html5Mode({

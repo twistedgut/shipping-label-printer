@@ -1,9 +1,10 @@
 package models
 
 case class XmlEntry(
-                 xmlName: String,
-                 xmlType: String)
-//                 xmlText: String)
+                 xmlName   :String,
+                 xmlType   :String,
+                 xmlText   :String,
+                 is_active :Boolean)
 
 object EntryJsonFormats {
   import play.api.libs.json.Json

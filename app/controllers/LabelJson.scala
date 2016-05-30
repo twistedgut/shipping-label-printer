@@ -11,14 +11,14 @@ import play.api.mvc._
 import play.api.libs.json._
 
 /**
-  * The LabelXml controllers encapsulates the Rest endpoints and the interaction with the MongoDB, via ReactiveMongo
+  * The LabelJson controllers encapsulates the Rest endpoints and the interaction with the MongoDB, via ReactiveMongo
   * play plugin. This provides a non-blocking driver for mongoDB as well as some useful additions for handling JSon.
   * @see https://github.com/ReactiveMongo/Play-ReactiveMongo
   */
 @Singleton
-class LabelXml extends Controller with MongoController {
+class LabelJson extends Controller with MongoController {
 
-  private final val logger: Logger = LoggerFactory.getLogger(classOf[LabelXml])
+  private final val logger: Logger = LoggerFactory.getLogger(classOf[LabelJson])
 
   /*
    * Get a JSONCollection (a Collection implementation that is designed to work
@@ -27,16 +27,16 @@ class LabelXml extends Controller with MongoController {
    * the collection reference to avoid potential problems in development with
    * Play hot-reloading.
    */
-  def collection: JSONCollection = db.collection[JSONCollection]("labelxml")
+  def collection: JSONCollection = db.collection[JSONCollection]("labeljson")
 
   // ------------------------------------------ //
   // Using case classes + Json Writes and Reads //
   // ------------------------------------------ //
 
   import models._
-  import models.EntryJsonFormats._
+  import models.JsonFormats._
 
-  def createXmlEntry = Action.async(parse.json) {
+  def createJsonEntry = Action.async(parse.json) {
     request =>
       /*
        * request.body is a JsValue.
@@ -45,42 +45,42 @@ class LabelXml extends Controller with MongoController {
        * (insert() takes a JsObject as parameter, or anything that can be
        * turned into a JsObject using a Writes.)
        */
-      request.body.validate[XmlEntry].map {
-        xmlentry =>
-          // `xmlentry` is an instance of the case class `models.XmlEntry`
-          collection.insert(xmlentry).map {
+      request.body.validate[JsonEntry].map {
+        jsonentry =>
+          // `jsonentry` is an instance of the case class `models.JsonEntry`
+          collection.insert(jsonentry).map {
             lastError =>
               logger.debug(s"Successfully inserted with LastError: $lastError")
-              Created(s"XML Entry Created")
+              Created(s"JSON Entry Created")
           }
       }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-  def updateXmlEntry(xmlName: String, xmlType: String) = Action.async(parse.json) {
+  def updateJsonEntry(jsonName: String, jsonType: String) = Action.async(parse.json) {
     request =>
-      request.body.validate[XmlEntry].map {
-        xmlentry =>
-          // find our xml entry by xml name and xml type
-          val xmlSelector = Json.obj("xmlName" -> xmlName, "xmlType" -> xmlType)
-          collection.update(xmlSelector, xmlentry).map {
+      request.body.validate[JsonEntry].map {
+        jsonentry =>
+          // find our json entry by json name and json type
+          val jsonSelector = Json.obj("jsonName" -> jsonName, "jsonType" -> jsonType)
+          collection.update(jsonSelector, jsonentry).map {
             lastError =>
               logger.debug(s"Successfully updated with LastError: $lastError")
-              Created(s"XML Entry Updated")
+              Created(s"JSON Entry Updated")
           }
       }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-  def findXmlEntries = Action.async {
+  def findJsonEntries = Action.async {
     // let's do our query
-    val cursor: Cursor[XmlEntry] = collection.
+    val cursor: Cursor[JsonEntry] = collection.
       find(Json.obj("is_active" -> true)).
-      cursor[XmlEntry]
+      cursor[JsonEntry]
 
     // gather all the JsObjects in a list
-    val futureXmlEntriesList: Future[List[XmlEntry]] = cursor.collect[List]()
+    val futureJsonEntriesList: Future[List[JsonEntry]] = cursor.collect[List]()
 
     // transform the list into a JsArray
-    val futureEntriesJsonArray: Future[JsArray] = futureXmlEntriesList.map { entries =>
+    val futureEntriesJsonArray: Future[JsArray] = futureJsonEntriesList.map { entries =>
       Json.arr(entries)
     }
     // everything's ok! Let's reply with the array
