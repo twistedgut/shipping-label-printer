@@ -13,7 +13,7 @@ class CreateXmlCtrl
             (data) =>
                 @$log.debug "Promise returned #{data} Xml Entry"
                 @entry = data
-                @$location.path("/")
+                @$location.path("/label/xml/view")
             ,
             (error) =>
                 @$log.error "Unable to create Xml Entry: #{error}"

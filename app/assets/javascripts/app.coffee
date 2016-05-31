@@ -16,7 +16,7 @@ angular.module('myApp.routeConfig', ['ngRoute'])
     .config(['$routeProvider', ($routeProvider) ->
         $routeProvider
             .when('/', {
-                templateUrl: '/assets/partials/view.html'
+                templateUrl: '/assets/partials/splash.html'
             })
             .when('/label/xml/view', {
                 templateUrl: '/assets/partials/view.html'
@@ -26,6 +26,9 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             })
             .when('/label/xml/update/:xmlName/:xmlType', {
                 templateUrl: '/assets/partials/update.html'
+            })
+            .when('/label/json/view', {
+                templateUrl: '/assets/partials/viewjson.html'
             })
             .when('/label/json/create', {
                 templateUrl: '/assets/partials/createjson.html'

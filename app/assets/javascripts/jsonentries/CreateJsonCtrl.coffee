@@ -13,10 +13,10 @@ class CreateJsonCtrl
             (data) =>
                 @$log.debug "Promise returned #{data} Json Entry"
                 @entry = data
-                @$location.path("/")
+                @$location.path("/label/json/view")
             ,
             (error) =>
                 @$log.error "Unable to create Json Entry: #{error}"
             )
 
-controllersModule.controller('CreateJsonCtrl', ['$log', '$location', 'JsonService', CreateJson                      Ctrl])
+controllersModule.controller('CreateJsonCtrl', ['$log', '$location', 'JsonService', CreateJsonCtrl])

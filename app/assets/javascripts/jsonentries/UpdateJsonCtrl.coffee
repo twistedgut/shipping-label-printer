@@ -12,7 +12,7 @@ class UpdateJsonCtrl
           (data) =>
             @$log.debug "Promise returned #{data} Json Entry"
             @entry = data
-            @$location.path("/")
+            @$location.path("/label/json/view")
         ,
         (error) =>
             @$log.error "Unable to update Json Entry: #{error}"
