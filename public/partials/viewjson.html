@@ -1,46 +1,44 @@
 
-
-<div ng-controller="XmlCtrl as xc">
+<div ng-controller="JsonCtrl as jc">
 
     <div>
         <div class="form-group">
             <h3>
-
                 <a ng-href="/#/" class="btn btn-default pull-right" id="btn_json_view">Home</a>
             </h3>
             <h3>
-                DHL XML Shipping Labels
-                <a ng-href="/#/label/xml/create" class="btn btn-primary pull-right" id="btn_xml_create">Add XML Entry</a>
+                Firefly JSON Shipping Labels
+                <a ng-href="/#/label/json/create" class="btn btn-primary pull-right" id="btn_json_create">Add JSON Entry</a>
             </h3>
             <hr>
         </div>
         <div class="form-group">
-            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter XML entries...">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter JSON entries...">
             <hr>
         </div>
 
         <table id="entry_list" class="table table-striped">
             <thead>
             <tr>
-                <th>XML entry name</th>
-                <th>XML type</th>
+                <th>JSON entry name</th>
+                <th>JSON type</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="entry in xc.entries | filter:searchText">
+            <tr ng-repeat="entry in jc.entries | filter:searchText">
                 <td>
-                    {{ entry.xmlName }}
+                    {{ entry.jsonName }}
                 </td>
                 <td>
-                    {{ entry.xmlType }}
+                    {{ entry.jsonType }}
                 </td>
                 <td>
-                    <a ng-href="/#/label/xml/update/{{entry.xmlName}}/{{entry.xmlType}}" class="btn btn-success pull-right" id="btn_xml_update">Edit</a>
+                    <a ng-href="/#/label/json/update/{{entry.jsonName}}/{{entry.jsonType}}" class="btn btn-success pull-right" id="btn_json_update">Edit</a>
                 </td>
             </tr>
-            <tr ng-hide="xc.entries.length">
+            <tr ng-hide="jc.entries.length">
                 <td colspan="3">
-                    <p class="text-center">No XML Entries Found</p>
+                    <p class="text-center">No JSON Entries Found</p>
                 </td>
             </tr>
             </tbody>
@@ -55,7 +53,7 @@
                 <accordion-heading>
                     Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                 </accordion-heading>
-                <pre>{{ xc.entries | json }}</pre>
+                <pre>{{ jc.entries | json }}</pre>
             </accordion-group>
         </accordion>
     </div>
