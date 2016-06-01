@@ -26,8 +26,9 @@
             <label id="lbl_xmlText" for="xmlText" class="col-sm-4 control-label">XML Text</label>
 
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="xmlText" id="xmlText"
-                       ng-model="cxc.entry.xmlText">
+                <textarea placeholder="Enter XML text here...." wrap="soft" form="CreateXmlEntryForm" rows=30
+                          class="form-control" name="xmlText" id="xmlText" ng-model="cxc.entry.xmlText">
+                </textarea>
             </div>
         </div>
 
@@ -43,5 +44,6 @@
 
 
     </form>
+
 </div>
 

@@ -26,8 +26,9 @@
             <label id="lbl_jsonText" for="jsonText" class="col-sm-4 control-label">JSON Text</label>
 
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="jsonText" id="jsonText"
-                       ng-model="cjc.entry.jsonText">
+                <textarea placeholder="Enter JSON text here...." wrap="soft" form="CreateJsonEntryForm" rows=30
+                          class="form-control" name="jsonText" id="jsonText" ng-model="cjc.entry.jsonText">
+                </textarea>
             </div>
         </div>
 
